@@ -10,7 +10,11 @@ final class DistanceCalculator
     {
         $sum = $distance1['distance'] + $distance2['distance'];
         if ($measure === 'yard') {
-            $sum = $sum * 1.093613;
+            $sum *= 1.093613;
+        }
+
+        if ($distance1['measure'] === 'yard' && $distance2['measure'] == 'yard' && $measure === "meter") {
+            $sum *= 0.9144;
         }
 
         return $sum;
