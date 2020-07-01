@@ -17,21 +17,33 @@ final class Distance
 
     public static function sum(Distance $d1, Distance $d2, string $measure): float
     {
-        if ($d1->measure === 'yard' && $d2->measure == 'meter' && $measure === "meter") {
-            $d1->measure = 'meter';
-            $d1->distance *= 0.9144;
+        return $d1->convertTo($measure) + $d2->convertTo($measure);
+    }
+
+    private function convertTo(string $measure): float
+    {
+        if ($measure === $this->measure) {
+            return $this->distance;
         }
 
-        $sum = $d1->distance + $d2->distance;
-        if ($d1->measure === 'meter' && $d2->measure == 'meter' && $measure === 'yard') {
-            $sum *= 1.093613;
+        if ($measure === 'meter') { // this measure has to be yard
+            return self::yardToMeter($this->distance);
         }
 
-        if ($d1->measure === 'yard' && $d2->measure == 'yard' && $measure === "meter") {
-            $sum *= 0.9144;
+        if ($measure === 'yard') { // this measure is meter
+            return self::meterToYard($this->distance);
         }
 
-        return $sum;
+    }
+
+    private static function yardToMeter(float $yards): float
+    {
+        return $yards * .9144;
+    }
+
+    private static function meterToYard(float $meter): float
+    {
+        return $meter * 1.093613;
     }
 }
 
