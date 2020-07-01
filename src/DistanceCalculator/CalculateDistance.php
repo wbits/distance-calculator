@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Assignment;
+namespace Assignment\DistanceCalculator;
 
 final class CalculateDistance
 {
