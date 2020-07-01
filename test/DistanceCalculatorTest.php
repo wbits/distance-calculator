@@ -14,7 +14,7 @@ final class DistanceCalculatorTest extends TestCase
     public function testItCanCalculateTheSumOfTwoDistances(array $d1, array $d2, string $measure, Distance $expectation)
     {
         $calculator = new DistanceCalculator();
-        $command = new CalculateDistance($d1, $d2, $measure);
+        $command = new CalculateDistance($measure, $d1, $d2);
 
         $newDistance = $calculator->calculate($command);
 

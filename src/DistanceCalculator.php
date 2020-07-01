@@ -8,11 +8,6 @@ final class DistanceCalculator
 {
     public function calculate(CalculateDistance $command): Distance
     {
-        return Distance::sum(
-            $command->measure(),
-            $command->d1(),
-            $command->d2()
-        );
+        return Distance::sum($command->measure(), ...$command->distances());
     }
 }
-

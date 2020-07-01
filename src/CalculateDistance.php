@@ -6,25 +6,23 @@ namespace Assignment;
 
 final class CalculateDistance
 {
-    private $distance1;
-    private $distance2;
+    private $distances;
     private $measure;
 
-    public function __construct(array $distance1, array $distance2, string $measure)
+    public function __construct(string $measure, array ...$distances)
     {
-        $this->distance1 = new Distance($distance1['measure'], $distance1['distance']);
-        $this->distance2 = new Distance($distance2['measure'], $distance2['distance']);
+        $this->distances = array_map(function (array $distance) {
+            return new Distance($distance['measure'], $distance['distance']);
+        }, $distances);
         $this->measure = $measure;
     }
 
-    public function d1(): Distance
+    /**
+     * @return Distance[]
+     */
+    public function distances(): array
     {
-        return $this->distance1;
-    }
-
-    public function d2(): Distance
-    {
-        return $this->distance2;
+        return $this->distances;
     }
 
     public function measure(): string
