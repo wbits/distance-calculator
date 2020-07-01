@@ -1,0 +1,14 @@
+{
+  "name": "dick/assignment",
+  "autoload": {
+    "psr-4": {
+      "Assignment\\": [
+        "src/",
+        "test/"
+      ]
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  }
+}
