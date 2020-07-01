@@ -15,9 +15,9 @@ final class DistanceCalculatorTest extends TestCase
     {
         $calculator = new DistanceCalculator();
 
-        $sum = $calculator->calculate($d1, $d2, $measure);
+        $newDistance = $calculator->calculate($d1, $d2, $measure);
 
-        self::assertEquals($expectation, $sum);
+        self::assertEquals($expectation, $newDistance);
     }
 
     public function provider(): array

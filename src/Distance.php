@@ -15,9 +15,14 @@ final class Distance
         $this->distance = $distance;
     }
 
-    public static function sum(Distance $d1, Distance $d2, string $measure): Distance
+    public static function sum(string $measure, Distance ...$distances): Distance
     {
-        return new self($measure, $d1->convertTo($measure) + $d2->convertTo($measure));
+        $totalDistance = (float) 0.0;
+        foreach ($distances as $distance) {
+            $totalDistance += $distance->convertTo($measure);
+        }
+
+        return new self($measure, $totalDistance);
     }
 
     private function convertTo(string $measure): float
