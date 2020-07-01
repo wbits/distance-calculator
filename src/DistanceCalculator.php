@@ -6,9 +6,14 @@ namespace Assignment;
 
 final class DistanceCalculator
 {
-    public function calculate(array $distance1, array $distance2, string $string): float
+    public function calculate(array $distance1, array $distance2, string $measure): float
     {
-        return $distance1['distance'] + $distance2['distance'];
+        $sum = $distance1['distance'] + $distance2['distance'];
+        if ($measure === 'yard') {
+            $sum = $sum * 1.093613;
+        }
+
+        return $sum;
     }
 }
 
