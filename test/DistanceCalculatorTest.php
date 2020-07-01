@@ -8,27 +8,46 @@ use PHPUnit\Framework\TestCase;
 
 final class DistanceCalculatorTest extends TestCase
 {
-    public function testItCanCalculateTheSumOfTwoDistances()
+    /**
+     * @dataProvider provider()
+     */
+    public function testItCanCalculateTheSumOfTwoDistances(array $d1, array $d2, string $measure, float $expectation)
     {
-        $distance1 = $distance2 = [
-            'measure' => 'meter',
-            'distance' => 1.0,
-        ];
         $calculator = new DistanceCalculator();
 
-        $sum = $calculator->calculate($distance1, $distance2, 'meter');
+        $sum = $calculator->calculate($d1, $d2, $measure);
 
-        self::assertEquals(2.0, $sum);
+        self::assertEquals($expectation, $sum);
+    }
 
-        $distance1 = $distance2 = [
-            'measure' => 'meter',
-            'distance' => .5,
+    public function provider(): array
+    {
+        return [
+            [
+                [
+                    'measure' => 'meter',
+                    'distance' => 1.0,
+                ],
+                [
+                    'measure' => 'meter',
+                    'distance' => 2.0,
+                ],
+                'meter',
+                3.0
+            ],
+            [
+                [
+                    'measure' => 'meter',
+                    'distance' => .5,
+                ],
+                [
+                    'measure' => 'meter',
+                    'distance' => .5,
+                ],
+                'yard',
+                1.093613
+            ],
         ];
-        $calculator = new DistanceCalculator();
-
-        $sum = $calculator->calculate($distance1, $distance2, 'yard');
-
-        self::assertEquals(1.093613, $sum);
     }
 }
 
