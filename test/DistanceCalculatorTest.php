@@ -19,6 +19,16 @@ final class DistanceCalculatorTest extends TestCase
         $sum = $calculator->calculate($distance1, $distance2, 'meter');
 
         self::assertEquals(2.0, $sum);
+
+        $distance1 = $distance2 = [
+            'measure' => 'meter',
+            'distance' => .5,
+        ];
+        $calculator = new DistanceCalculator();
+
+        $sum = $calculator->calculate($distance1, $distance2, 'yard');
+
+        self::assertEquals(1.093613, $sum);
     }
 }
 
