@@ -11,7 +11,7 @@ final class DistanceCalculatorTest extends TestCase
     /**
      * @dataProvider provider()
      */
-    public function testItCanCalculateTheSumOfTwoDistances(array $d1, array $d2, string $measure, float $expectation)
+    public function testItCanCalculateTheSumOfTwoDistances(array $d1, array $d2, string $measure, Distance $expectation)
     {
         $calculator = new DistanceCalculator();
 
@@ -33,7 +33,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => 2.0,
                 ],
                 'meter',
-                3.0
+                new Distance('meter', 3.0)
             ],
             [
                 [
@@ -45,7 +45,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => .5,
                 ],
                 'yard',
-                1.093613
+                new Distance('yard', 1.093613),
             ],
             [
                 [
@@ -57,7 +57,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => .8,
                 ],
                 'meter',
-                0.9144
+                new Distance('meter', 0.9144),
             ],
             [
                 [
@@ -69,7 +69,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => 1,
                 ],
                 'meter',
-                1.9144
+                new Distance('meter', 1.9144),
             ],
         ];
     }
