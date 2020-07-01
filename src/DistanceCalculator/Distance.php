@@ -25,6 +25,14 @@ final class Distance
         return new self($measure, $totalDistance);
     }
 
+    public function toArray(): array
+    {
+        return [
+            'measure' => $this->measure,
+            'distance' => $this->distance,
+        ];
+    }
+
     private function convertTo(string $measure): float
     {
         if ($measure === $this->measure) {

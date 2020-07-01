@@ -27,7 +27,7 @@ final class CalculateDistanceActionTest extends TestCase
         $expectedContent = json_encode(['measure' => 'meter', 'distance' => 2.0]);
 
         self::assertInstanceOf(Message::class, $response);
-        self::assertEquals('application/json', $response->getHeader('Content-Type'));
-        self::assertEquals($expectedContent, $response->getBody()->getContents());
+        self::assertEquals(['application/json'], $response->getHeader('Content-Type'));
+        self::assertEquals((string) $response->getBody(), $expectedContent);
     }
 }
