@@ -47,6 +47,18 @@ final class DistanceCalculatorTest extends TestCase
                 'yard',
                 1.093613
             ],
+            [
+                [
+                    'measure' => 'yard',
+                    'distance' => .2,
+                ],
+                [
+                    'measure' => 'yard',
+                    'distance' => .8,
+                ],
+                'meter',
+                0.9144
+            ],
         ];
     }
 }
