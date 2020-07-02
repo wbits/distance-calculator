@@ -35,9 +35,15 @@ final class E2EDistanceCalculatorTest extends TestCase
             [
                 'd1' => ['measure'  => 'meter', 'distance' => 1.0],
                 'd2' => ['measure'  => 'meter', 'distance' => 2.0],
-                'expectedContent' => json_encode(['measure'  => 'meter', 'distance' => 3.0]),
+                'expectedContent' => json_encode(['measure' => 'meter', 'distance' => 3.0]),
                 'expectedStatusCode' => 200,
-            ]
+            ],
+            [
+                'd1' => ['measure'  => 'invalid', 'distance' => 1.0],
+                'd2' => ['measure'  => 'meter', 'distance' => 2.0],
+                'expectedContent' => json_encode(['errors' => ['Invalid measure']]),
+                'expectedStatusCode' => 422,
+            ],
         ];
     }
 }
