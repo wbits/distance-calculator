@@ -1,4 +1,3 @@
-# distance-calculator
 
 start server: php -S localhost:2323
 run tests: vendor/bin/phpunit test/
@@ -22,16 +21,17 @@ seems to be more about a function than it is about posting a resource.
 That is why I did choose to treath the command as the posted resource.
 
 calculate distance request: 
-POST /calculate/{measure} // where {measure} is either yard or meter
-{
-  "distances":[
+
+    `POST /calculate/{measure}
     {
-      "measure": "meter",
-      "distance": 1.0
-    },
-    {
-      "measure": "yard",
-      "distance": 2.0
-    },
-  ]
-}
+    	"distances":[
+	    	{
+	    		"measure": "meter",
+	    		"distance": 1.0
+	    	},
+	    	{
+	    		"measure": "yard",
+	    		"distance": 2.0
+	    	},
+	    ]
+    }
