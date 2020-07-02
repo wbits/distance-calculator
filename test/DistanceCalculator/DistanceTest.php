@@ -18,4 +18,15 @@ final class DistanceTest extends TestCase
 
         new Distance($invalidMeasure, 1.0);
     }
+
+    public function testItRaisesAnErrorWhenSummingWithIllegalMeasure()
+    {
+        $invalidMeasure = 'invalid';
+        $d1 = new Distance('yard', 1.0);
+        $d2 = new Distance('yard', 2.0);
+
+        $this->expectException(InvalidMeasure::class);
+
+        Distance::sum($invalidMeasure, $d1, $d2);
+    }
 }
