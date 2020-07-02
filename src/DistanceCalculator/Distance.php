@@ -23,6 +23,10 @@ final class Distance
 
     public static function sum(string $measure, Distance ...$distances): Distance
     {
+        if ($measure !== 'meter' && $measure !== 'yard') {
+            throw new InvalidMeasure($measure);
+        }
+
         $totalDistance = (float) 0.0;
         foreach ($distances as $distance) {
             $totalDistance += $distance->convertTo($measure);
