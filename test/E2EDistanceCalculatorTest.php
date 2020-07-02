@@ -16,11 +16,13 @@ final class E2EDistanceCalculatorTest extends TestCase
         $d1 = ['measure'  => 'meter', 'distance' => 1.0];
         $d2 = ['measure'  => 'meter', 'distance' => 2.0];
         $expected = ['measure'  => 'meter', 'distance' => 3.0];
-        $jsonPayload = ['distances' => [$d1, $d2,]];
+        $jsonPayload = ['distances' => [$d1, $d2]];
 
         $response = $httpClient->request('POST', $uri, ['json' => $jsonPayload]);
 
         self::assertEquals(200, $response->getStatusCode());
         self::assertEquals(json_encode($expected), $response->getBody()->getContents());
     }
+
+
 }
