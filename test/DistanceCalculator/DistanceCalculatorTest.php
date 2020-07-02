@@ -34,7 +34,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => 2.0,
                 ],
                 'meter',
-                new Distance('meter', 3.0),
+                Distance::inMeters(3.0),
             ],
             [
                 [
@@ -46,7 +46,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => .5,
                 ],
                 'yard',
-                new Distance('yard', 1.093613),
+                Distance::inYards(1.093613),
             ],
             [
                 [
@@ -58,7 +58,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => .8,
                 ],
                 'meter',
-                new Distance('meter', 0.9144),
+                Distance::inMeters(0.9144),
             ],
             [
                 [
@@ -70,7 +70,7 @@ final class DistanceCalculatorTest extends TestCase
                     'distance' => 1,
                 ],
                 'meter',
-                new Distance('meter', 1.9144),
+                Distance::inMeters(1.9144),
             ],
         ];
     }

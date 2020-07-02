@@ -34,8 +34,8 @@ final class CalculateDistanceAction
             return $response->withHeader('Content-Type', 'application/json');
         } catch (InvalidMeasure $e) {
             throw new HttpException($request, 'Invalid measure', 422);
-        } finally {
-            throw new HttpException($request, 'Unexpected error', 500);
+        } catch (\Throwable $e) {
+            throw new HttpException($request, $e->getMessage(), 500);
         }
     }
 }

@@ -11,10 +11,10 @@ final class CalculateDistance
 
     public function __construct(string $measure, array ...$distances)
     {
-        $this->distances = array_map(function (array $distance) {
-            return new Distance($distance['measure'], $distance['distance']);
-        }, $distances);
         $this->measure = $measure;
+        $this->distances = array_map(function (array $distance) {
+            return Distance::fromArray($distance);
+        }, $distances);
     }
 
     /**

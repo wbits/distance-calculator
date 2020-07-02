@@ -14,7 +14,7 @@ final class Distance
     private $measure;
     private $distance;
 
-    public function __construct(string $measure, float $distance)
+    private function __construct(string $measure, float $distance)
     {
         if (!self::isMeasureValid($measure)) {
             throw new InvalidMeasure($measure);
@@ -22,6 +22,21 @@ final class Distance
 
         $this->measure = $measure;
         $this->distance = $distance;
+    }
+
+    public static function inYards(float $distance): Distance
+    {
+        return new self(self::MEASURE_IN_YARD, $distance);
+    }
+
+    public static function inMeters(float $distance): Distance
+    {
+        return new self(self::MEASURE_IN_METER, $distance);
+    }
+
+    public static function fromArray(array $distance): Distance
+    {
+        return new self($distance['measure'], $distance['distance']);
     }
 
     public static function sum(string $measure, Distance ...$distances): Distance
@@ -52,11 +67,11 @@ final class Distance
             return $this->distance;
         }
 
-        if ('meter' === $measure) {
+        if (self::MEASURE_IN_METER === $measure) {
             return self::yardToMeter($this->distance);
         }
 
-        if ('yard' === $measure) {
+        if (self::MEASURE_IN_YARD === $measure) {
             return self::meterToYard($this->distance);
         }
     }
