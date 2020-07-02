@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Assignment\DistanceCalculator;
 
+use Assignment\DistanceCalculator\Error\InvalidMeasure;
+
 final class Distance
 {
     private $measure;
@@ -11,6 +13,10 @@ final class Distance
 
     public function __construct(string $measure, float $distance)
     {
+        if ($measure !== 'meter' && $measure !== 'yard') {
+            throw new InvalidMeasure($measure);
+        }
+
         $this->measure = $measure;
         $this->distance = $distance;
     }
