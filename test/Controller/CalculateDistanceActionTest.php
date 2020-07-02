@@ -7,6 +7,7 @@ namespace Assignment\Controller;
 use Assignment\DistanceCalculator\CalculateDistance;
 use Assignment\DistanceCalculator\DistanceCalculator;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 use Slim\Psr7\Message;
 
 final class CalculateDistanceActionTest extends TestCase
@@ -14,9 +15,10 @@ final class CalculateDistanceActionTest extends TestCase
     public function testItCanCalculateTheSumOfTwoDistances()
     {
         $action = new CalculateDistanceAction(new DistanceCalculator());
+        $request = $this->prophesize(ServerRequestInterface::class);
 
         /** @var Message $response */
-        $response = $action($this->getCommand());
+        $response = $action($this->getCommand(), $request->reveal());
 
         self::assertInstanceOf(Message::class, $response);
         self::assertEquals(['application/json'], $response->getHeader('Content-Type'));
