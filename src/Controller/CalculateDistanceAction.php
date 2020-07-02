@@ -6,6 +6,10 @@ namespace Assignment\Controller;
 
 use Assignment\DistanceCalculator\CalculateDistance;
 use Assignment\DistanceCalculator\DistanceCalculator;
+use Assignment\DistanceCalculator\Error\InvalidMeasure;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpException;
 use Slim\Psr7\Message;
 use Slim\Psr7\Response;
 
@@ -18,13 +22,17 @@ final class CalculateDistanceAction
         $this->distanceCalculator = $distanceCalculator;
     }
 
-    public function __invoke(CalculateDistance $command): Message
+    public function __invoke(CalculateDistance $command, ServerRequestInterface $request): Message
     {
-        $distance = $this->distanceCalculator->calculate($command);
+        try {
+            $distance = $this->distanceCalculator->calculate($command);
 
-        $response = new Response();
-        $response->getBody()->write(json_encode($distance->toArray()));
+            $response = new Response();
+            $response->getBody()->write(json_encode($distance->toArray()));
 
-        return $response->withHeader('Content-Type', 'application/json');
+            return $response->withHeader('Content-Type', 'application/json');
+        } catch (InvalidMeasure $e) {
+            throw new HttpException($request, 'Invalid measure', 422);
+        }
     }
 }

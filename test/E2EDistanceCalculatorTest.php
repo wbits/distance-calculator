@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Assignment;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use PHPUnit\Framework\TestCase;
 
 final class E2EDistanceCalculatorTest extends TestCase
@@ -23,7 +24,13 @@ final class E2EDistanceCalculatorTest extends TestCase
         $uri = 'http://localhost:2323/calculate/meter';
         $jsonPayload = ['distances' => [$d1, $d2]];
 
-        $response = $httpClient->request('POST', $uri, ['json' => $jsonPayload]);
+        try {
+            $response = $httpClient->request('POST', $uri, ['json' => $jsonPayload]);
+        } catch (ClientException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+            }
+        }
 
         self::assertEquals($expectedStatusCode, $response->getStatusCode());
         self::assertEquals($expectedContent, $response->getBody()->getContents());
