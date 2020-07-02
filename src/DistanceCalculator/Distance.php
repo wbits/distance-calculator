@@ -8,12 +8,15 @@ use Assignment\DistanceCalculator\Error\InvalidMeasure;
 
 final class Distance
 {
+    const MEASURE_IN_YARD = 'yard';
+    const MEASURE_IN_METER = 'meter';
+
     private $measure;
     private $distance;
 
     public function __construct(string $measure, float $distance)
     {
-        if ($measure !== 'meter' && $measure !== 'yard') {
+        if (!self::isMeasureValid($measure)) {
             throw new InvalidMeasure($measure);
         }
 
@@ -23,7 +26,7 @@ final class Distance
 
     public static function sum(string $measure, Distance ...$distances): Distance
     {
-        if ($measure !== 'meter' && $measure !== 'yard') {
+        if (!self::isMeasureValid($measure)) {
             throw new InvalidMeasure($measure);
         }
 
@@ -66,6 +69,11 @@ final class Distance
     private static function meterToYard(float $meter): float
     {
         return $meter * 1.093613;
+    }
+
+    private static function isMeasureValid(string $measure): bool
+    {
+        return in_array($measure, [self::MEASURE_IN_METER, self::MEASURE_IN_YARD]);
     }
 }
 
