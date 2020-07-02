@@ -46,7 +46,6 @@ final class Distance
         if ($measure === 'yard') { // this measure is meter
             return self::meterToYard($this->distance);
         }
-
     }
 
     private static function yardToMeter(float $yards): float

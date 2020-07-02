@@ -12,7 +12,7 @@ final class E2EDistanceCalculatorTest extends TestCase
     public function testItCanMakeARequestToCalculateTheSumOfDistances()
     {
         $httpClient = new Client();
-        $uri = 'http://localhost:2323/calculate/meters';
+        $uri = 'http://localhost:2323/calculate/meter';
         $d1 = ['measure'  => 'meter', 'distance' => 1.0];
         $d2 = ['measure'  => 'meter', 'distance' => 2.0];
         $expected = ['measure'  => 'meter', 'distance' => 3.0];
