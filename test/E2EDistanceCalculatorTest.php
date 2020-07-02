@@ -54,6 +54,21 @@ final class E2EDistanceCalculatorTest extends TestCase
         ];
     }
 
+    public function testItRespondsWithAnErrorResponseWhenPathHasIllegalMeasure()
+    {
+        $this->uri = 'http://localhost:2323/calculate/illegal';
+
+        $response = $this->callTheApi([
+            'distances' => [
+                ['measure'  => 'meter', 'distance' => 1.0],
+                ['measure'  => 'meter', 'distance' => 2.0],
+            ]
+        ]);
+
+        self::assertEquals(422, $response->getStatusCode());
+        self::assertEquals(json_encode(['errors' => ['Invalid measure']]), $response->getBody()->getContents());
+    }
+
     private function callTheApi(array $json): ResponseInterface
     {
         try {
