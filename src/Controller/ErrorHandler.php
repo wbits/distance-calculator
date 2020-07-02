@@ -17,6 +17,7 @@ final class ErrorHandler
     {
         $this->app = $app;
     }
+
     public function __invoke(
         ServerRequestInterface $request,
         Throwable $exception,
@@ -37,4 +38,3 @@ final class ErrorHandler
         return $response->withStatus(500);
     }
 }
-

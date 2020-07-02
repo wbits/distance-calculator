@@ -53,11 +53,11 @@ final class Distance
             return $this->distance;
         }
 
-        if ($measure === 'meter') {
+        if ('meter' === $measure) {
             return self::yardToMeter($this->distance);
         }
 
-        if ($measure === 'yard') {
+        if ('yard' === $measure) {
             return self::meterToYard($this->distance);
         }
     }
@@ -77,4 +77,3 @@ final class Distance
         return in_array($measure, [self::MEASURE_IN_METER, self::MEASURE_IN_YARD]);
     }
 }
-

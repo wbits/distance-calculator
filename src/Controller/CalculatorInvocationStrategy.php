@@ -14,7 +14,7 @@ use Slim\Interfaces\InvocationStrategyInterface;
 final class CalculatorInvocationStrategy implements InvocationStrategyInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __invoke(
         callable $callable,

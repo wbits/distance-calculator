@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Assignment\DistanceCalculator;
 
@@ -26,23 +26,23 @@ final class DistanceCalculatorTest extends TestCase
         return [
             [
                 [
-                    'measure'  => 'meter',
+                    'measure' => 'meter',
                     'distance' => 1.0,
                 ],
                 [
-                    'measure'  => 'meter',
+                    'measure' => 'meter',
                     'distance' => 2.0,
                 ],
                 'meter',
-                new Distance('meter', 3.0)
+                new Distance('meter', 3.0),
             ],
             [
                 [
-                    'measure'  => 'meter',
+                    'measure' => 'meter',
                     'distance' => .5,
                 ],
                 [
-                    'measure'  => 'meter',
+                    'measure' => 'meter',
                     'distance' => .5,
                 ],
                 'yard',
@@ -50,11 +50,11 @@ final class DistanceCalculatorTest extends TestCase
             ],
             [
                 [
-                    'measure'  => 'yard',
+                    'measure' => 'yard',
                     'distance' => .2,
                 ],
                 [
-                    'measure'  => 'yard',
+                    'measure' => 'yard',
                     'distance' => .8,
                 ],
                 'meter',
@@ -62,11 +62,11 @@ final class DistanceCalculatorTest extends TestCase
             ],
             [
                 [
-                    'measure'  => 'yard',
+                    'measure' => 'yard',
                     'distance' => 1,
                 ],
                 [
-                    'measure'  => 'meter',
+                    'measure' => 'meter',
                     'distance' => 1,
                 ],
                 'meter',
