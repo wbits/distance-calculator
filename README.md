@@ -21,4 +21,17 @@ it is about POST-ing a calculation command. A calculation of two distances
 seems to be more about a function than it is about posting a resource.
 That is why I did choose to treath the command as the posted resource.
 
-
+calculate distance request: 
+POST /calculate/{measure} // where {measure} is either yard or meter
+{
+  "distances":[
+    {
+      "measure": "meter",
+      "distance": 1.0
+    },
+    {
+      "measure": "yard",
+      "distance": 2.0
+    },
+  ]
+}
