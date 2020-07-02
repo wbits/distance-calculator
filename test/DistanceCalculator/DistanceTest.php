@@ -29,4 +29,13 @@ final class DistanceTest extends TestCase
 
         Distance::sum($invalidMeasure, $d1, $d2);
     }
+
+    public function testItCanSumZeroDistances()
+    {
+        $expected = new Distance(Distance::MEASURE_IN_METER, 0.0);
+
+        $distance = Distance::sum(Distance::MEASURE_IN_METER);
+
+        self::assertEquals($expected, $distance);
+    }
 }
