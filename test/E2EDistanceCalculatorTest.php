@@ -23,6 +23,4 @@ final class E2EDistanceCalculatorTest extends TestCase
         self::assertEquals(200, $response->getStatusCode());
         self::assertEquals(json_encode($expected), $response->getBody()->getContents());
     }
-
-
 }
