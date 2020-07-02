@@ -6,6 +6,7 @@ namespace Assignment\Controller;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
+use Slim\Exception\HttpException;
 use Throwable;
 
 final class ErrorHandler
@@ -23,12 +24,17 @@ final class ErrorHandler
         bool $logErrors,
         bool $logErrorDetails
     ) {
-        $payload = ['errors' => [$exception->getMessage()]];
         $response = $this->app->getResponseFactory()->createResponse();
+        $payload = ['errors' => [$exception->getMessage()]];
         $response->getBody()->write(
             json_encode($payload, JSON_UNESCAPED_UNICODE)
         );
-        return $response->withStatus(422);
+
+        if ($exception instanceof HttpException) {
+            return $response->withStatus(422);
+        }
+
+        return $response->withStatus(500);
     }
 }
 

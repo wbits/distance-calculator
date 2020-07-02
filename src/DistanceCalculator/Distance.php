@@ -16,6 +16,7 @@ final class Distance
 
     public function __construct(string $measure, float $distance)
     {
+        throw new \Exception('damnit');
         if (!self::isMeasureValid($measure)) {
             throw new InvalidMeasure($measure);
         }
@@ -52,11 +53,11 @@ final class Distance
             return $this->distance;
         }
 
-        if ($measure === 'meter') { // this measure has to be yard
+        if ($measure === 'meter') {
             return self::yardToMeter($this->distance);
         }
 
-        if ($measure === 'yard') { // this measure is meter
+        if ($measure === 'yard') {
             return self::meterToYard($this->distance);
         }
     }
