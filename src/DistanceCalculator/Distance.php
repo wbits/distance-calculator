@@ -16,7 +16,6 @@ final class Distance
 
     public function __construct(string $measure, float $distance)
     {
-        throw new \Exception('damnit');
         if (!self::isMeasureValid($measure)) {
             throw new InvalidMeasure($measure);
         }
